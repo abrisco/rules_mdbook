@@ -1,0 +1,19 @@
+load("@rules_rust//crate_universe:defs.bzl", "crate", "crates_vendor")
+
+crates_vendor(
+    name = "crates_vendor",
+    annotations = {
+        "mdbook": [crate.annotation(
+            gen_binaries = ["mdbook"],
+        )],
+    },
+    mode = "remote",
+    packages = {
+        "mdbook": crate.spec(
+            version = "=0.4.37",
+        ),
+    },
+    repository_name = "rules_mdbook_deps",
+    tags = ["manual"],
+    vendor_path = "crates",
+)
