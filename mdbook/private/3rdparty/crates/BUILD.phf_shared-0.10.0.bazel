@@ -14,7 +14,7 @@ rust_library(
     name = "phf_shared",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -83,6 +83,6 @@ rust_library(
     }),
     version = "0.10.0",
     deps = [
-        "@rules_mdbook_deps__siphasher-0.3.11//:siphasher",
+        "@rmdbi__siphasher-0.3.11//:siphasher",
     ],
 )

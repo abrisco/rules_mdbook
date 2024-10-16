@@ -14,7 +14,7 @@ rust_library(
     name = "inotify_sys",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -79,6 +79,6 @@ rust_library(
     }),
     version = "0.1.5",
     deps = [
-        "@rules_mdbook_deps__libc-0.2.153//:libc",
+        "@rmdbi__libc-0.2.159//:libc",
     ],
 )

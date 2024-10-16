@@ -14,7 +14,7 @@ rust_library(
     name = "crossbeam_deque",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -83,7 +83,7 @@ rust_library(
     }),
     version = "0.8.5",
     deps = [
-        "@rules_mdbook_deps__crossbeam-epoch-0.9.18//:crossbeam_epoch",
-        "@rules_mdbook_deps__crossbeam-utils-0.8.19//:crossbeam_utils",
+        "@rmdbi__crossbeam-epoch-0.9.18//:crossbeam_epoch",
+        "@rmdbi__crossbeam-utils-0.8.20//:crossbeam_utils",
     ],
 )

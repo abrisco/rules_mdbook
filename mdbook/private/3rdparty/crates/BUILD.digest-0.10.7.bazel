@@ -14,7 +14,7 @@ rust_library(
     name = "digest",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -86,7 +86,7 @@ rust_library(
     }),
     version = "0.10.7",
     deps = [
-        "@rules_mdbook_deps__block-buffer-0.10.4//:block_buffer",
-        "@rules_mdbook_deps__crypto-common-0.1.6//:crypto_common",
+        "@rmdbi__block-buffer-0.10.4//:block_buffer",
+        "@rmdbi__crypto-common-0.1.6//:crypto_common",
     ],
 )

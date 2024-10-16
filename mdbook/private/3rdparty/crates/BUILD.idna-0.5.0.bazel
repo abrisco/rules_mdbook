@@ -14,7 +14,7 @@ rust_library(
     name = "idna",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -84,7 +84,7 @@ rust_library(
     }),
     version = "0.5.0",
     deps = [
-        "@rules_mdbook_deps__unicode-bidi-0.3.15//:unicode_bidi",
-        "@rules_mdbook_deps__unicode-normalization-0.1.23//:unicode_normalization",
+        "@rmdbi__unicode-bidi-0.3.17//:unicode_bidi",
+        "@rmdbi__unicode-normalization-0.1.24//:unicode_normalization",
     ],
 )

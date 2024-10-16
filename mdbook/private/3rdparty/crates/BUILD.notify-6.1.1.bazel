@@ -14,7 +14,7 @@ rust_library(
     name = "notify",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -85,92 +85,92 @@ rust_library(
     }),
     version = "6.1.1",
     deps = [
-        "@rules_mdbook_deps__crossbeam-channel-0.5.12//:crossbeam_channel",
-        "@rules_mdbook_deps__filetime-0.2.23//:filetime",
-        "@rules_mdbook_deps__libc-0.2.153//:libc",
-        "@rules_mdbook_deps__log-0.4.21//:log",
-        "@rules_mdbook_deps__walkdir-2.5.0//:walkdir",
+        "@rmdbi__crossbeam-channel-0.5.13//:crossbeam_channel",
+        "@rmdbi__filetime-0.2.25//:filetime",
+        "@rmdbi__libc-0.2.159//:libc",
+        "@rmdbi__log-0.4.22//:log",
+        "@rmdbi__walkdir-2.5.0//:walkdir",
     ] + select({
         "@rules_rust//rust/platform:aarch64-apple-darwin": [
-            "@rules_mdbook_deps__bitflags-2.5.0//:bitflags",  # cfg(target_os = "macos")
-            "@rules_mdbook_deps__fsevent-sys-4.1.0//:fsevent_sys",  # cfg(target_os = "macos")
+            "@rmdbi__bitflags-2.6.0//:bitflags",  # cfg(target_os = "macos")
+            "@rmdbi__fsevent-sys-4.1.0//:fsevent_sys",  # aarch64-apple-darwin
         ],
         "@rules_rust//rust/platform:aarch64-linux-android": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:aarch64-pc-windows-msvc": [
-            "@rules_mdbook_deps__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
+            "@rmdbi__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:aarch64-unknown-linux-gnu": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:aarch64-unknown-nixos-gnu": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:arm-unknown-linux-gnueabi": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:armv7-linux-androideabi": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:armv7-unknown-linux-gnueabi": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:i686-apple-darwin": [
-            "@rules_mdbook_deps__bitflags-2.5.0//:bitflags",  # cfg(target_os = "macos")
-            "@rules_mdbook_deps__fsevent-sys-4.1.0//:fsevent_sys",  # cfg(target_os = "macos")
+            "@rmdbi__bitflags-2.6.0//:bitflags",  # cfg(target_os = "macos")
+            "@rmdbi__fsevent-sys-4.1.0//:fsevent_sys",  # i686-apple-darwin
         ],
         "@rules_rust//rust/platform:i686-linux-android": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:i686-pc-windows-msvc": [
-            "@rules_mdbook_deps__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
+            "@rmdbi__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:i686-unknown-freebsd": [
-            "@rules_mdbook_deps__kqueue-1.0.8//:kqueue",  # cfg(any(target_os = "freebsd", target_os = "openbsd", target_os = "netbsd", target_os = "dragonflybsd"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "freebsd", target_os = "openbsd", target_os = "netbsd", target_os = "dragonflybsd"))
+            "@rmdbi__kqueue-1.0.8//:kqueue",  # cfg(any(target_os = "freebsd", target_os = "openbsd", target_os = "netbsd", target_os = "dragonflybsd"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "freebsd", target_os = "openbsd", target_os = "netbsd", target_os = "dragonflybsd"))
         ],
         "@rules_rust//rust/platform:i686-unknown-linux-gnu": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:powerpc-unknown-linux-gnu": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:s390x-unknown-linux-gnu": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:x86_64-apple-darwin": [
-            "@rules_mdbook_deps__bitflags-2.5.0//:bitflags",  # cfg(target_os = "macos")
-            "@rules_mdbook_deps__fsevent-sys-4.1.0//:fsevent_sys",  # cfg(target_os = "macos")
+            "@rmdbi__bitflags-2.6.0//:bitflags",  # cfg(target_os = "macos")
+            "@rmdbi__fsevent-sys-4.1.0//:fsevent_sys",  # x86_64-apple-darwin
         ],
         "@rules_rust//rust/platform:x86_64-linux-android": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:x86_64-pc-windows-msvc": [
-            "@rules_mdbook_deps__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
+            "@rmdbi__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:x86_64-unknown-freebsd": [
-            "@rules_mdbook_deps__kqueue-1.0.8//:kqueue",  # cfg(any(target_os = "freebsd", target_os = "openbsd", target_os = "netbsd", target_os = "dragonflybsd"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "freebsd", target_os = "openbsd", target_os = "netbsd", target_os = "dragonflybsd"))
+            "@rmdbi__kqueue-1.0.8//:kqueue",  # cfg(any(target_os = "freebsd", target_os = "openbsd", target_os = "netbsd", target_os = "dragonflybsd"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "freebsd", target_os = "openbsd", target_os = "netbsd", target_os = "dragonflybsd"))
         ],
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "@rules_rust//rust/platform:x86_64-unknown-nixos-gnu": [
-            "@rules_mdbook_deps__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
-            "@rules_mdbook_deps__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__inotify-0.9.6//:inotify",  # cfg(any(target_os = "linux", target_os = "android"))
+            "@rmdbi__mio-0.8.11//:mio",  # cfg(any(target_os = "linux", target_os = "android"))
         ],
         "//conditions:default": [],
     }),

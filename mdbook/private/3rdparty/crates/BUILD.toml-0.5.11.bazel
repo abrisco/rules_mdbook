@@ -14,7 +14,7 @@ rust_library(
     name = "toml",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -82,6 +82,6 @@ rust_library(
     }),
     version = "0.5.11",
     deps = [
-        "@rules_mdbook_deps__serde-1.0.198//:serde",
+        "@rmdbi__serde-1.0.210//:serde",
     ],
 )

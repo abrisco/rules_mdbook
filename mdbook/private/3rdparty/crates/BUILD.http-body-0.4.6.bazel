@@ -14,7 +14,7 @@ rust_library(
     name = "http_body",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -79,8 +79,8 @@ rust_library(
     }),
     version = "0.4.6",
     deps = [
-        "@rules_mdbook_deps__bytes-1.6.0//:bytes",
-        "@rules_mdbook_deps__http-0.2.12//:http",
-        "@rules_mdbook_deps__pin-project-lite-0.2.14//:pin_project_lite",
+        "@rmdbi__bytes-1.7.2//:bytes",
+        "@rmdbi__http-0.2.12//:http",
+        "@rmdbi__pin-project-lite-0.2.14//:pin_project_lite",
     ],
 )

@@ -24,7 +24,7 @@ mdbook_toolchain = rule(
             mandatory = True,
             allow_single_file = True,
             executable = True,
-            cfg = "target",
+            cfg = "exec",
         ),
     },
 )

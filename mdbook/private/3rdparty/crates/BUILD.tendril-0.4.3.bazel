@@ -14,7 +14,7 @@ rust_library(
     name = "tendril",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -79,8 +79,8 @@ rust_library(
     }),
     version = "0.4.3",
     deps = [
-        "@rules_mdbook_deps__futf-0.1.5//:futf",
-        "@rules_mdbook_deps__mac-0.1.1//:mac",
-        "@rules_mdbook_deps__utf-8-0.7.6//:utf8",
+        "@rmdbi__futf-0.1.5//:futf",
+        "@rmdbi__mac-0.1.1//:mac",
+        "@rmdbi__utf-8-0.7.6//:utf8",
     ],
 )

@@ -14,7 +14,7 @@ rust_library(
     name = "tokio_tungstenite",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -85,9 +85,9 @@ rust_library(
     }),
     version = "0.21.0",
     deps = [
-        "@rules_mdbook_deps__futures-util-0.3.30//:futures_util",
-        "@rules_mdbook_deps__log-0.4.21//:log",
-        "@rules_mdbook_deps__tokio-1.37.0//:tokio",
-        "@rules_mdbook_deps__tungstenite-0.21.0//:tungstenite",
+        "@rmdbi__futures-util-0.3.31//:futures_util",
+        "@rmdbi__log-0.4.22//:log",
+        "@rmdbi__tokio-1.40.0//:tokio",
+        "@rmdbi__tungstenite-0.21.0//:tungstenite",
     ],
 )

@@ -14,7 +14,7 @@ rust_library(
     name = "string_cache_codegen",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -79,9 +79,9 @@ rust_library(
     }),
     version = "0.5.2",
     deps = [
-        "@rules_mdbook_deps__phf_generator-0.10.0//:phf_generator",
-        "@rules_mdbook_deps__phf_shared-0.10.0//:phf_shared",
-        "@rules_mdbook_deps__proc-macro2-1.0.81//:proc_macro2",
-        "@rules_mdbook_deps__quote-1.0.36//:quote",
+        "@rmdbi__phf_generator-0.10.0//:phf_generator",
+        "@rmdbi__phf_shared-0.10.0//:phf_shared",
+        "@rmdbi__proc-macro2-1.0.87//:proc_macro2",
+        "@rmdbi__quote-1.0.37//:quote",
     ],
 )

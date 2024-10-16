@@ -15,7 +15,7 @@ rust_library(
     name = "typenum",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -80,15 +80,28 @@ rust_library(
     }),
     version = "1.17.0",
     deps = [
-        "@rules_mdbook_deps__typenum-1.17.0//:build_script_main",
+        "@rmdbi__typenum-1.17.0//:build_script_main",
     ],
 )
 
 cargo_build_script(
-    name = "typenum_bs",
+    name = "_bs",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
+    ),
+    compile_data = glob(
+        include = ["**"],
+        allow_empty = True,
+        exclude = [
+            "**/* *",
+            "**/*.rs",
+            ".tmp_git_root/**/*",
+            "BUILD",
+            "BUILD.bazel",
+            "WORKSPACE",
+            "WORKSPACE.bazel",
+        ],
     ),
     crate_name = "build_script_main",
     crate_root = "build/main.rs",
@@ -105,6 +118,7 @@ cargo_build_script(
         ],
     ),
     edition = "2018",
+    pkg_name = "typenum",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -121,6 +135,6 @@ cargo_build_script(
 
 alias(
     name = "build_script_main",
-    actual = ":typenum_bs",
+    actual = ":_bs",
     tags = ["manual"],
 )

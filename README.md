@@ -12,8 +12,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # See releases for urls and checksums
 http_archive(
     name = "rules_mdbook",
-    sha256 = "{sha256}",
-    urls = ["https://github.com/abrisco/rules_mdbook/releases/download/{version}/rules_mdbook-v{version}.tar.gz"],
+    integrity = "{integrity}",
+    urls = ["https://github.com/abrisco/rules_mdbook/releases/download/{version}/rules_mdbook-{version}.tar.gz"],
 )
 
 load("@rules_mdbook//mdbook:repositories.bzl", "mdbook_register_toolchains", "rules_mdbook_dependencies")
@@ -51,8 +51,8 @@ Rules to create book from markdown files using `mdBook`.
 | Name  | Description | Type | Mandatory | Default |
 | :------------- | :------------- | :------------- | :------------- | :------------- |
 | <a id="mdbook-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
-| <a id="mdbook-srcs"></a>srcs |  All inputs to the book   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
-| <a id="mdbook-book"></a>book |  The book.toml file   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
+| <a id="mdbook-srcs"></a>srcs |  All inputs to the book.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
+| <a id="mdbook-book"></a>book |  The `book.toml` file.   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
 
 
 <a id="mdbook_toolchain"></a>
