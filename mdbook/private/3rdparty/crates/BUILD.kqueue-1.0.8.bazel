@@ -14,7 +14,7 @@ rust_library(
     name = "kqueue",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -79,7 +79,7 @@ rust_library(
     }),
     version = "1.0.8",
     deps = [
-        "@rules_mdbook_deps__kqueue-sys-1.0.4//:kqueue_sys",
-        "@rules_mdbook_deps__libc-0.2.153//:libc",
+        "@rmdbi__kqueue-sys-1.0.4//:kqueue_sys",
+        "@rmdbi__libc-0.2.159//:libc",
     ],
 )

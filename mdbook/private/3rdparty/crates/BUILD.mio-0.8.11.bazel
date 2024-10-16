@@ -14,7 +14,7 @@ rust_library(
     name = "mio",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -29,72 +29,11 @@ rust_library(
         ],
     ),
     crate_features = [
-        "net",
+        "default",
+        "log",
         "os-ext",
         "os-poll",
-    ] + select({
-        "@rules_rust//rust/platform:aarch64-linux-android": [
-            "default",  # aarch64-linux-android
-            "log",  # aarch64-linux-android
-        ],
-        "@rules_rust//rust/platform:aarch64-unknown-linux-gnu": [
-            "default",  # aarch64-unknown-linux-gnu
-            "log",  # aarch64-unknown-linux-gnu
-        ],
-        "@rules_rust//rust/platform:aarch64-unknown-nixos-gnu": [
-            "default",  # aarch64-unknown-nixos-gnu
-            "log",  # aarch64-unknown-nixos-gnu
-        ],
-        "@rules_rust//rust/platform:arm-unknown-linux-gnueabi": [
-            "default",  # arm-unknown-linux-gnueabi
-            "log",  # arm-unknown-linux-gnueabi
-        ],
-        "@rules_rust//rust/platform:armv7-linux-androideabi": [
-            "default",  # armv7-linux-androideabi
-            "log",  # armv7-linux-androideabi
-        ],
-        "@rules_rust//rust/platform:armv7-unknown-linux-gnueabi": [
-            "default",  # armv7-unknown-linux-gnueabi
-            "log",  # armv7-unknown-linux-gnueabi
-        ],
-        "@rules_rust//rust/platform:i686-linux-android": [
-            "default",  # i686-linux-android
-            "log",  # i686-linux-android
-        ],
-        "@rules_rust//rust/platform:i686-unknown-freebsd": [
-            "default",  # i686-unknown-freebsd
-            "log",  # i686-unknown-freebsd
-        ],
-        "@rules_rust//rust/platform:i686-unknown-linux-gnu": [
-            "default",  # i686-unknown-linux-gnu
-            "log",  # i686-unknown-linux-gnu
-        ],
-        "@rules_rust//rust/platform:powerpc-unknown-linux-gnu": [
-            "default",  # powerpc-unknown-linux-gnu
-            "log",  # powerpc-unknown-linux-gnu
-        ],
-        "@rules_rust//rust/platform:s390x-unknown-linux-gnu": [
-            "default",  # s390x-unknown-linux-gnu
-            "log",  # s390x-unknown-linux-gnu
-        ],
-        "@rules_rust//rust/platform:x86_64-linux-android": [
-            "default",  # x86_64-linux-android
-            "log",  # x86_64-linux-android
-        ],
-        "@rules_rust//rust/platform:x86_64-unknown-freebsd": [
-            "default",  # x86_64-unknown-freebsd
-            "log",  # x86_64-unknown-freebsd
-        ],
-        "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [
-            "default",  # x86_64-unknown-linux-gnu
-            "log",  # x86_64-unknown-linux-gnu
-        ],
-        "@rules_rust//rust/platform:x86_64-unknown-nixos-gnu": [
-            "default",  # x86_64-unknown-nixos-gnu
-            "log",  # x86_64-unknown-nixos-gnu
-        ],
-        "//conditions:default": [],
-    }),
+    ],
     crate_root = "src/lib.rs",
     edition = "2018",
     rustc_flags = [
@@ -146,92 +85,92 @@ rust_library(
     }),
     version = "0.8.11",
     deps = [
-        "@rules_mdbook_deps__log-0.4.21//:log",
+        "@rmdbi__log-0.4.22//:log",
     ] + select({
         "@rules_rust//rust/platform:aarch64-apple-darwin": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:aarch64-apple-ios": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:aarch64-apple-ios-sim": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:aarch64-fuchsia": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:aarch64-linux-android": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:aarch64-pc-windows-msvc": [
-            "@rules_mdbook_deps__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
+            "@rmdbi__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:aarch64-unknown-linux-gnu": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:aarch64-unknown-nixos-gnu": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:aarch64-unknown-nto-qnx710": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:arm-unknown-linux-gnueabi": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:armv7-linux-androideabi": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:armv7-unknown-linux-gnueabi": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:i686-apple-darwin": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:i686-linux-android": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:i686-pc-windows-msvc": [
-            "@rules_mdbook_deps__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
+            "@rmdbi__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:i686-unknown-freebsd": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:i686-unknown-linux-gnu": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:powerpc-unknown-linux-gnu": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:s390x-unknown-linux-gnu": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:wasm32-wasi": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(target_os = "wasi")
-            "@rules_mdbook_deps__wasi-0.11.0-wasi-snapshot-preview1//:wasi",  # cfg(target_os = "wasi")
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(target_os = "wasi")
+            "@rmdbi__wasi-0.11.0-wasi-snapshot-preview1//:wasi",  # cfg(target_os = "wasi")
         ],
         "@rules_rust//rust/platform:x86_64-apple-darwin": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:x86_64-apple-ios": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:x86_64-fuchsia": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:x86_64-linux-android": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:x86_64-pc-windows-msvc": [
-            "@rules_mdbook_deps__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
+            "@rmdbi__windows-sys-0.48.0//:windows_sys",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:x86_64-unknown-freebsd": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "@rules_rust//rust/platform:x86_64-unknown-nixos-gnu": [
-            "@rules_mdbook_deps__libc-0.2.153//:libc",  # cfg(unix)
+            "@rmdbi__libc-0.2.159//:libc",  # cfg(unix)
         ],
         "//conditions:default": [],
     }),

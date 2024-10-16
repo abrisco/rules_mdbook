@@ -14,7 +14,7 @@ rust_library(
     name = "elasticlunr",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -31,7 +31,7 @@ rust_library(
     crate_root = "src/lib.rs",
     edition = "2018",
     proc_macro_deps = [
-        "@rules_mdbook_deps__serde_derive-1.0.198//:serde_derive",
+        "@rmdbi__serde_derive-1.0.210//:serde_derive",
     ],
     rustc_flags = [
         "--cap-lints=allow",
@@ -82,8 +82,8 @@ rust_library(
     }),
     version = "3.0.2",
     deps = [
-        "@rules_mdbook_deps__regex-1.10.4//:regex",
-        "@rules_mdbook_deps__serde-1.0.198//:serde",
-        "@rules_mdbook_deps__serde_json-1.0.116//:serde_json",
+        "@rmdbi__regex-1.11.0//:regex",
+        "@rmdbi__serde-1.0.210//:serde",
+        "@rmdbi__serde_json-1.0.128//:serde_json",
     ],
 )

@@ -14,7 +14,7 @@ rust_library(
     name = "crypto_common",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -82,7 +82,7 @@ rust_library(
     }),
     version = "0.1.6",
     deps = [
-        "@rules_mdbook_deps__generic-array-0.14.7//:generic_array",
-        "@rules_mdbook_deps__typenum-1.17.0//:typenum",
+        "@rmdbi__generic-array-0.14.7//:generic_array",
+        "@rmdbi__typenum-1.17.0//:typenum",
     ],
 )

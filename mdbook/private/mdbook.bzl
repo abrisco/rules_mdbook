@@ -20,6 +20,7 @@ def _mdbook_impl(ctx):
         outputs = [output],
         arguments = [args],
         inputs = inputs,
+        toolchain = "@rules_mdbook//mdbook:toolchain_type",
     )
 
     return [DefaultInfo(
@@ -31,12 +32,12 @@ mdbook = rule(
     doc = "Rules to create book from markdown files using `mdBook`.",
     attrs = {
         "book": attr.label(
-            doc = "The book.toml file",
+            doc = "The `book.toml` file.",
             allow_single_file = ["book.toml"],
             mandatory = True,
         ),
         "srcs": attr.label_list(
-            doc = "All inputs to the book",
+            doc = "All inputs to the book.",
             allow_files = True,
         ),
         "_process_wrapper": attr.label(

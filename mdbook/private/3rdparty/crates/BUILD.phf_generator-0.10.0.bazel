@@ -14,7 +14,7 @@ rust_library(
     name = "phf_generator",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -79,7 +79,7 @@ rust_library(
     }),
     version = "0.10.0",
     deps = [
-        "@rules_mdbook_deps__phf_shared-0.10.0//:phf_shared",
-        "@rules_mdbook_deps__rand-0.8.5//:rand",
+        "@rmdbi__phf_shared-0.10.0//:phf_shared",
+        "@rmdbi__rand-0.8.5//:rand",
     ],
 )

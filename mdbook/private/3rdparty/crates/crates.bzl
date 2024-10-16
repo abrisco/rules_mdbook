@@ -22,11 +22,11 @@ def crate_repositories():
     """
     maybe(
         crates_vendor_remote_repository,
-        name = "rules_mdbook_deps",
+        name = "rmdbi",
         build_file = Label("@rules_mdbook//mdbook/private/3rdparty/crates:BUILD.bazel"),
         defs_module = Label("@rules_mdbook//mdbook/private/3rdparty/crates:defs.bzl"),
     )
 
-    direct_deps = [struct(repo = "rules_mdbook_deps", is_dev_dep = False)]
+    direct_deps = [struct(repo = "rmdbi", is_dev_dep = False)]
     direct_deps.extend(_crate_repositories())
     return direct_deps

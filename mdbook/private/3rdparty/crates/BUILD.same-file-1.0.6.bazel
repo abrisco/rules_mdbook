@@ -14,7 +14,7 @@ rust_library(
     name = "same_file",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -80,13 +80,13 @@ rust_library(
     version = "1.0.6",
     deps = select({
         "@rules_rust//rust/platform:aarch64-pc-windows-msvc": [
-            "@rules_mdbook_deps__winapi-util-0.1.6//:winapi_util",  # cfg(windows)
+            "@rmdbi__winapi-util-0.1.9//:winapi_util",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:i686-pc-windows-msvc": [
-            "@rules_mdbook_deps__winapi-util-0.1.6//:winapi_util",  # cfg(windows)
+            "@rmdbi__winapi-util-0.1.9//:winapi_util",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:x86_64-pc-windows-msvc": [
-            "@rules_mdbook_deps__winapi-util-0.1.6//:winapi_util",  # cfg(windows)
+            "@rmdbi__winapi-util-0.1.9//:winapi_util",  # cfg(windows)
         ],
         "//conditions:default": [],
     }),

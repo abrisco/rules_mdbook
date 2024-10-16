@@ -15,7 +15,7 @@ rust_library(
     name = "winapi_i686_pc_windows_gnu",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -80,15 +80,28 @@ rust_library(
     }),
     version = "0.4.0",
     deps = [
-        "@rules_mdbook_deps__winapi-i686-pc-windows-gnu-0.4.0//:build_script_build",
+        "@rmdbi__winapi-i686-pc-windows-gnu-0.4.0//:build_script_build",
     ],
 )
 
 cargo_build_script(
-    name = "winapi-i686-pc-windows-gnu_bs",
+    name = "_bs",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
+    ),
+    compile_data = glob(
+        include = ["**"],
+        allow_empty = True,
+        exclude = [
+            "**/* *",
+            "**/*.rs",
+            ".tmp_git_root/**/*",
+            "BUILD",
+            "BUILD.bazel",
+            "WORKSPACE",
+            "WORKSPACE.bazel",
+        ],
     ),
     crate_name = "build_script_build",
     crate_root = "build.rs",
@@ -105,6 +118,7 @@ cargo_build_script(
         ],
     ),
     edition = "2015",
+    pkg_name = "winapi-i686-pc-windows-gnu",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -121,6 +135,6 @@ cargo_build_script(
 
 alias(
     name = "build_script_build",
-    actual = ":winapi-i686-pc-windows-gnu_bs",
+    actual = ":_bs",
     tags = ["manual"],
 )

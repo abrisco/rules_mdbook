@@ -15,7 +15,7 @@ rust_library(
     name = "pulldown_cmark",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -84,19 +84,32 @@ rust_library(
     }),
     version = "0.10.3",
     deps = [
-        "@rules_mdbook_deps__bitflags-2.5.0//:bitflags",
-        "@rules_mdbook_deps__memchr-2.7.2//:memchr",
-        "@rules_mdbook_deps__pulldown-cmark-0.10.3//:build_script_build",
-        "@rules_mdbook_deps__pulldown-cmark-escape-0.10.1//:pulldown_cmark_escape",
-        "@rules_mdbook_deps__unicase-2.7.0//:unicase",
+        "@rmdbi__bitflags-2.6.0//:bitflags",
+        "@rmdbi__memchr-2.7.4//:memchr",
+        "@rmdbi__pulldown-cmark-0.10.3//:build_script_build",
+        "@rmdbi__pulldown-cmark-escape-0.10.1//:pulldown_cmark_escape",
+        "@rmdbi__unicase-2.7.0//:unicase",
     ],
 )
 
 cargo_build_script(
-    name = "pulldown-cmark_bs",
+    name = "_bs",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
+    ),
+    compile_data = glob(
+        include = ["**"],
+        allow_empty = True,
+        exclude = [
+            "**/* *",
+            "**/*.rs",
+            ".tmp_git_root/**/*",
+            "BUILD",
+            "BUILD.bazel",
+            "WORKSPACE",
+            "WORKSPACE.bazel",
+        ],
     ),
     crate_features = [
         "html",
@@ -117,6 +130,7 @@ cargo_build_script(
         ],
     ),
     edition = "2021",
+    pkg_name = "pulldown-cmark",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -133,6 +147,6 @@ cargo_build_script(
 
 alias(
     name = "build_script_build",
-    actual = ":pulldown-cmark_bs",
+    actual = ":_bs",
     tags = ["manual"],
 )

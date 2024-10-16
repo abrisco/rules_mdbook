@@ -33,13 +33,13 @@ filegroup(
 # Workspace Member Dependencies
 alias(
     name = "mdbook",
-    actual = "@rules_mdbook_deps__mdbook-0.4.37//:mdbook",
+    actual = "@rmdbi__mdbook-0.4.40//:mdbook",
     tags = ["manual"],
 )
 
 # Binaries
 alias(
     name = "mdbook__mdbook",
-    actual = "@rules_mdbook_deps__mdbook-0.4.37//:mdbook__bin",
+    actual = "@rmdbi__mdbook-0.4.40//:mdbook__bin",
     tags = ["manual"],
 )

@@ -14,7 +14,7 @@ rust_library(
     name = "futf",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -79,7 +79,7 @@ rust_library(
     }),
     version = "0.1.5",
     deps = [
-        "@rules_mdbook_deps__mac-0.1.1//:mac",
-        "@rules_mdbook_deps__new_debug_unreachable-1.0.6//:debug_unreachable",
+        "@rmdbi__mac-0.1.1//:mac",
+        "@rmdbi__new_debug_unreachable-1.0.6//:debug_unreachable",
     ],
 )

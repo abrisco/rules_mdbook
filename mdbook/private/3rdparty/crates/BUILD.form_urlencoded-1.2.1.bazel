@@ -14,7 +14,7 @@ rust_library(
     name = "form_urlencoded",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -84,6 +84,6 @@ rust_library(
     }),
     version = "1.2.1",
     deps = [
-        "@rules_mdbook_deps__percent-encoding-2.3.1//:percent_encoding",
+        "@rmdbi__percent-encoding-2.3.1//:percent_encoding",
     ],
 )

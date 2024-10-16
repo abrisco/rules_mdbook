@@ -15,7 +15,7 @@ rust_library(
     name = "slab",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -84,15 +84,28 @@ rust_library(
     }),
     version = "0.4.9",
     deps = [
-        "@rules_mdbook_deps__slab-0.4.9//:build_script_build",
+        "@rmdbi__slab-0.4.9//:build_script_build",
     ],
 )
 
 cargo_build_script(
-    name = "slab_bs",
+    name = "_bs",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
+    ),
+    compile_data = glob(
+        include = ["**"],
+        allow_empty = True,
+        exclude = [
+            "**/* *",
+            "**/*.rs",
+            ".tmp_git_root/**/*",
+            "BUILD",
+            "BUILD.bazel",
+            "WORKSPACE",
+            "WORKSPACE.bazel",
+        ],
     ),
     crate_features = [
         "default",
@@ -113,6 +126,7 @@ cargo_build_script(
         ],
     ),
     edition = "2018",
+    pkg_name = "slab",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -126,12 +140,12 @@ cargo_build_script(
     version = "0.4.9",
     visibility = ["//visibility:private"],
     deps = [
-        "@rules_mdbook_deps__autocfg-1.2.0//:autocfg",
+        "@rmdbi__autocfg-1.4.0//:autocfg",
     ],
 )
 
 alias(
     name = "build_script_build",
-    actual = ":slab_bs",
+    actual = ":_bs",
     tags = ["manual"],
 )

@@ -1,7 +1,13 @@
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("//mdbook:defs.bzl", "mdbook")
 
 mdbook(
     name = "simple",
     srcs = glob(["src/**/*.md"]),
     book = "book.toml",
+)
+
+build_test(
+    name = "simple_test",
+    targets = [":simple"],
 )

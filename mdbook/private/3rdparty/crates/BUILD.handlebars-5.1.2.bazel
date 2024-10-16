@@ -14,7 +14,7 @@ rust_library(
     name = "handlebars",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -34,7 +34,7 @@ rust_library(
     crate_root = "src/lib.rs",
     edition = "2021",
     proc_macro_deps = [
-        "@rules_mdbook_deps__pest_derive-2.7.9//:pest_derive",
+        "@rmdbi__pest_derive-2.7.14//:pest_derive",
     ],
     rustc_flags = [
         "--cap-lints=allow",
@@ -85,10 +85,10 @@ rust_library(
     }),
     version = "5.1.2",
     deps = [
-        "@rules_mdbook_deps__log-0.4.21//:log",
-        "@rules_mdbook_deps__pest-2.7.9//:pest",
-        "@rules_mdbook_deps__serde-1.0.198//:serde",
-        "@rules_mdbook_deps__serde_json-1.0.116//:serde_json",
-        "@rules_mdbook_deps__thiserror-1.0.59//:thiserror",
+        "@rmdbi__log-0.4.22//:log",
+        "@rmdbi__pest-2.7.14//:pest",
+        "@rmdbi__serde-1.0.210//:serde",
+        "@rmdbi__serde_json-1.0.128//:serde_json",
+        "@rmdbi__thiserror-1.0.64//:thiserror",
     ],
 )

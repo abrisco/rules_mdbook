@@ -14,7 +14,7 @@ rust_library(
     name = "notify_debouncer_mini",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -84,8 +84,8 @@ rust_library(
     }),
     version = "0.4.1",
     deps = [
-        "@rules_mdbook_deps__crossbeam-channel-0.5.12//:crossbeam_channel",
-        "@rules_mdbook_deps__log-0.4.21//:log",
-        "@rules_mdbook_deps__notify-6.1.1//:notify",
+        "@rmdbi__crossbeam-channel-0.5.13//:crossbeam_channel",
+        "@rmdbi__log-0.4.22//:log",
+        "@rmdbi__notify-6.1.1//:notify",
     ],
 )

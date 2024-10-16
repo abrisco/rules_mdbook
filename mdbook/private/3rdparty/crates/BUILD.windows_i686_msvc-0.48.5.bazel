@@ -15,7 +15,7 @@ rust_library(
     name = "windows_i686_msvc",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -80,15 +80,28 @@ rust_library(
     }),
     version = "0.48.5",
     deps = [
-        "@rules_mdbook_deps__windows_i686_msvc-0.48.5//:build_script_build",
+        "@rmdbi__windows_i686_msvc-0.48.5//:build_script_build",
     ],
 )
 
 cargo_build_script(
-    name = "windows_i686_msvc_bs",
+    name = "_bs",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
+    ),
+    compile_data = glob(
+        include = ["**"],
+        allow_empty = True,
+        exclude = [
+            "**/* *",
+            "**/*.rs",
+            ".tmp_git_root/**/*",
+            "BUILD",
+            "BUILD.bazel",
+            "WORKSPACE",
+            "WORKSPACE.bazel",
+        ],
     ),
     crate_name = "build_script_build",
     crate_root = "build.rs",
@@ -105,6 +118,7 @@ cargo_build_script(
         ],
     ),
     edition = "2018",
+    pkg_name = "windows_i686_msvc",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -121,6 +135,6 @@ cargo_build_script(
 
 alias(
     name = "build_script_build",
-    actual = ":windows_i686_msvc_bs",
+    actual = ":_bs",
     tags = ["manual"],
 )

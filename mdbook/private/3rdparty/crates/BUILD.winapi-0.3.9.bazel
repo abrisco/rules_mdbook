@@ -15,7 +15,7 @@ rust_library(
     name = "winapi",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
     compile_data = glob(
         include = ["**"],
@@ -29,20 +29,6 @@ rust_library(
             "WORKSPACE.bazel",
         ],
     ),
-    crate_features = [
-        "consoleapi",
-        "errhandlingapi",
-        "fileapi",
-        "minwindef",
-        "processenv",
-        "shellapi",
-        "std",
-        "sysinfoapi",
-        "winbase",
-        "wincon",
-        "winerror",
-        "winnt",
-    ],
     crate_root = "src/lib.rs",
     edition = "2015",
     rustc_flags = [
@@ -94,30 +80,29 @@ rust_library(
     }),
     version = "0.3.9",
     deps = [
-        "@rules_mdbook_deps__winapi-0.3.9//:build_script_build",
+        "@rmdbi__winapi-0.3.9//:build_script_build",
     ],
 )
 
 cargo_build_script(
-    name = "winapi_bs",
+    name = "_bs",
     srcs = glob(
         include = ["**/*.rs"],
-        allow_empty = False,
+        allow_empty = True,
     ),
-    crate_features = [
-        "consoleapi",
-        "errhandlingapi",
-        "fileapi",
-        "minwindef",
-        "processenv",
-        "shellapi",
-        "std",
-        "sysinfoapi",
-        "winbase",
-        "wincon",
-        "winerror",
-        "winnt",
-    ],
+    compile_data = glob(
+        include = ["**"],
+        allow_empty = True,
+        exclude = [
+            "**/* *",
+            "**/*.rs",
+            ".tmp_git_root/**/*",
+            "BUILD",
+            "BUILD.bazel",
+            "WORKSPACE",
+            "WORKSPACE.bazel",
+        ],
+    ),
     crate_name = "build_script_build",
     crate_root = "build.rs",
     data = glob(
@@ -133,6 +118,7 @@ cargo_build_script(
         ],
     ),
     edition = "2015",
+    pkg_name = "winapi",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -149,6 +135,6 @@ cargo_build_script(
 
 alias(
     name = "build_script_build",
-    actual = ":winapi_bs",
+    actual = ":_bs",
     tags = ["manual"],
 )

@@ -10,10 +10,12 @@ crates_vendor(
     mode = "remote",
     packages = {
         "mdbook": crate.spec(
-            version = "=0.4.37",
+            version = "=0.4.40",
         ),
     },
-    repository_name = "rules_mdbook_deps",
+    # Use a short name to avoid MAX_PATH issues on windows.
+    # `rmdbi` == `rules_mdbook_crate_index`
+    repository_name = "rmdbi",
     tags = ["manual"],
     vendor_path = "crates",
 )
