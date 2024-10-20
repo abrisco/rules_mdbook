@@ -4,12 +4,12 @@ load("@rules_rust//rust:defs.bzl", "rust_binary")
 rust_binary(
     name = "process_wrapper",
     srcs = ["process_wrapper.rs"],
-    edition = "2018",
+    edition = "2021",
+    deps = ["@rules_rust//tools/action_args"],
 )
 
 bzl_library(
     name = "bzl_lib",
     srcs = glob(["*.bzl"]),
-    # deps = ["//mdbook/private:bzl_lib"],
     visibility = ["//mdbook:__pkg__"],
 )
