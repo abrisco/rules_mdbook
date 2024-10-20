@@ -5,6 +5,7 @@ rust_binary(
     name = "process_wrapper",
     srcs = ["process_wrapper.rs"],
     edition = "2021",
+    deps = ["@rules_rust//tools/action_args"],
 )
 
 bzl_library(
