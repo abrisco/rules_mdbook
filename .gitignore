@@ -2,3 +2,6 @@
 
 user.bazelrc
 /bazel-*
+
+/.vscode
+rust-project.json

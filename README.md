@@ -40,7 +40,7 @@ rules_mdbook_transitive_deps()
 ## mdbook
 
 <pre>
-mdbook(<a href="#mdbook-name">name</a>, <a href="#mdbook-srcs">srcs</a>, <a href="#mdbook-book">book</a>)
+mdbook(<a href="#mdbook-name">name</a>, <a href="#mdbook-srcs">srcs</a>, <a href="#mdbook-book">book</a>, <a href="#mdbook-plugins">plugins</a>)
 </pre>
 
 Rules to create book from markdown files using `mdBook`.
@@ -53,6 +53,7 @@ Rules to create book from markdown files using `mdBook`.
 | <a id="mdbook-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
 | <a id="mdbook-srcs"></a>srcs |  All inputs to the book.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 | <a id="mdbook-book"></a>book |  The `book.toml` file.   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
+| <a id="mdbook-plugins"></a>plugins |  Executables to inject into `PATH` for use in [preprocessor commands](https://rust-lang.github.io/mdBook/format/configuration/preprocessors.html#provide-your-own-command).   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 
 
 <a id="mdbook_toolchain"></a>
@@ -60,7 +61,7 @@ Rules to create book from markdown files using `mdBook`.
 ## mdbook_toolchain
 
 <pre>
-mdbook_toolchain(<a href="#mdbook_toolchain-name">name</a>, <a href="#mdbook_toolchain-mdbook">mdbook</a>)
+mdbook_toolchain(<a href="#mdbook_toolchain-name">name</a>, <a href="#mdbook_toolchain-mdbook">mdbook</a>, <a href="#mdbook_toolchain-plugins">plugins</a>)
 </pre>
 
 A [mdBook](https://rust-lang.github.io/mdBook/) toolchain.
@@ -72,5 +73,6 @@ A [mdBook](https://rust-lang.github.io/mdBook/) toolchain.
 | :------------- | :------------- | :------------- | :------------- | :------------- |
 | <a id="mdbook_toolchain-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
 | <a id="mdbook_toolchain-mdbook"></a>mdbook |  A `mdBook` binary.   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
+| <a id="mdbook_toolchain-plugins"></a>plugins |  Executables to inject into `PATH` for use in [preprocessor commands](https://rust-lang.github.io/mdBook/format/configuration/preprocessors.html#provide-your-own-command).   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 
 

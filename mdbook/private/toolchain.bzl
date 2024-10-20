@@ -5,9 +5,20 @@ def _mdbook_toolchain_impl(ctx):
         "MDBOOK": ctx.file.mdbook.path,
     })
 
+    all_files = [
+        ctx.attr.mdbook[DefaultInfo].files,
+        ctx.attr.mdbook[DefaultInfo].default_runfiles.files,
+    ]
+
+    for target in ctx.attr.plugins:
+        all_files.append(target[DefaultInfo].files)
+        all_files.append(target[DefaultInfo].default_runfiles.files)
+
     toolchain = platform_common.ToolchainInfo(
         make_variables = make_variable_info,
         mdbook = ctx.file.mdbook,
+        plugins = depset(ctx.files.plugins),
+        all_files = depset(transitive = all_files),
     )
 
     return [
@@ -24,6 +35,14 @@ mdbook_toolchain = rule(
             mandatory = True,
             allow_single_file = True,
             executable = True,
+            cfg = "exec",
+        ),
+        "plugins": attr.label_list(
+            doc = (
+                "Executables to inject into `PATH` for use in " +
+                "[preprocessor commands](https://rust-lang.github.io/mdBook/format/configuration/preprocessors.html#provide-your-own-command)."
+            ),
+            allow_files = True,
             cfg = "exec",
         ),
     },
