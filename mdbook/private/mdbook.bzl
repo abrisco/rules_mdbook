@@ -33,7 +33,7 @@ def _mdbook_impl(ctx):
     ctx.actions.run(
         mnemonic = "MdBookBuild",
         executable = ctx.executable._process_wrapper,
-        tools = [toolchain.mdbook],
+        tools = depset(ctx.files.plugins, transitive = [toolchain.all_files]),
         outputs = [output],
         arguments = [inputs_map_args, args],
         env = {"MDBOOK_PLUGIN_PATH": plugin_path},
