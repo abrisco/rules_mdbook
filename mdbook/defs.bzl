@@ -37,6 +37,7 @@ rules_mdbook_transitive_deps()
 load(
     "//mdbook/private:mdbook.bzl",
     _mdbook = "mdbook",
+    _mdbook_server = "mdbook_server",
 )
 load(
     "//mdbook/private:toolchain.bzl",
@@ -44,4 +45,5 @@ load(
 )
 
 mdbook = _mdbook
+mdbook_server = _mdbook_server
 mdbook_toolchain = _mdbook_toolchain

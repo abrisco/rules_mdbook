@@ -1,10 +1,15 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
-load("//mdbook:defs.bzl", "mdbook")
+load("//mdbook:defs.bzl", "mdbook", "mdbook_server")
 
 mdbook(
     name = "simple",
     srcs = glob(["src/**/*.md"]),
     book = "book.toml",
+)
+
+mdbook_server(
+    name = "simple_server",
+    book = ":simple",
 )
 
 build_test(
