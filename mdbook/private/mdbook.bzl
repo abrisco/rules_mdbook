@@ -1,5 +1,14 @@
 """mdBook rules"""
 
+MdBookInfo = provider(
+    doc = "Information about a `mdbook` target.",
+    fields = {
+        "config": "File: The `book.toml` file.",
+        "plugins": "Depset[File]: TODO",
+        "srcs": "Depset[File]: TODO",
+    },
+)
+
 def _map_inputs(file):
     return "{}={}".format(file.path, file.short_path)
 
@@ -41,9 +50,16 @@ def _mdbook_impl(ctx):
         toolchain = "@rules_mdbook//mdbook:toolchain_type",
     )
 
-    return [DefaultInfo(
-        files = depset([output]),
-    )]
+    return [
+        DefaultInfo(
+            files = depset([output]),
+        ),
+        MdBookInfo(
+            srcs = depset(ctx.files.srcs),
+            config = ctx.file.book,
+            plugins = depset(ctx.files.plugins),
+        ),
+    ]
 
 mdbook = rule(
     implementation = _mdbook_impl,
@@ -73,4 +89,98 @@ mdbook = rule(
         ),
     },
     toolchains = ["@rules_mdbook//mdbook:toolchain_type"],
+)
+
+def _rlocationpath(file, workspace_name):
+    if file.short_path.startswith("../"):
+        return file.short_path[len("../"):]
+
+    return "{}/{}".format(workspace_name, file.short_path)
+
+def _mdbook_server_impl(ctx):
+    toolchain = ctx.toolchains["@rules_mdbook//mdbook:toolchain_type"]
+    book_info = ctx.attr.book[MdBookInfo]
+
+    args = ctx.actions.args()
+
+    args.add("--mdbook={}".format(_rlocationpath(toolchain.mdbook, ctx.workspace_name)))
+    args.add("--config={}".format(_rlocationpath(book_info.config, ctx.workspace_name)))
+    args.add("--hostname={}".format(ctx.attr.hostname))
+    args.add("--port={}".format(ctx.attr.port))
+
+    workspace_name = ctx.workspace_name
+
+    def _runfile_map(file):
+        return "--plugin={}".format(_rlocationpath(file, workspace_name))
+
+    args.add_all(depset(transitive = [book_info.plugins, toolchain.plugins]), map_each = _runfile_map, allow_closure = True)
+
+    args_file = ctx.actions.declare_file("{}.mdbook_serve_args.txt".format(ctx.label.name))
+    ctx.actions.write(
+        output = args_file,
+        content = args,
+    )
+
+    is_windows = toolchain.mdbook.basename.endswith(".exe")
+    executable = ctx.actions.declare_file("{}{}".format(
+        ctx.label.name,
+        ".exe" if is_windows else "",
+    ))
+
+    ctx.actions.symlink(
+        output = executable,
+        target_file = ctx.executable._server,
+        is_executable = True,
+    )
+
+    return [
+        DefaultInfo(
+            executable = executable,
+            files = depset([executable]),
+            runfiles = ctx.runfiles(
+                files = [
+                    book_info.config,
+                    args_file,
+                    ctx.executable._server,
+                ],
+                transitive_files = depset(transitive = [
+                    book_info.srcs,
+                    book_info.plugins,
+                    toolchain.all_files,
+                ]),
+            ),
+        ),
+        RunEnvironmentInfo(
+            environment = {
+                "RULES_MDBOOK_SERVE_ARGS_FILE": _rlocationpath(args_file, ctx.workspace_name),
+            },
+        ),
+    ]
+
+mdbook_server = rule(
+    implementation = _mdbook_server_impl,
+    doc = "Spawn an mdbook server for a given `mdbook` target.",
+    attrs = {
+        "book": attr.label(
+            doc = "The `mdbook` target to serve.",
+            providers = [MdBookInfo],
+            mandatory = True,
+        ),
+        "hostname": attr.string(
+            doc = "The default hostname to use (Can be overridden on the command line).",
+            default = "localhost",
+        ),
+        "port": attr.string(
+            doc = "The default port to use (Can be overridden on the command line).",
+            default = "3000",
+        ),
+        "_server": attr.label(
+            doc = "TODO",
+            cfg = "target",
+            executable = True,
+            default = Label("//mdbook/private:server"),
+        ),
+    },
+    toolchains = ["@rules_mdbook//mdbook:toolchain_type"],
+    executable = True,
 )

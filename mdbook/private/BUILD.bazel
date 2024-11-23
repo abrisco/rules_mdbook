@@ -5,7 +5,19 @@ rust_binary(
     name = "process_wrapper",
     srcs = ["process_wrapper.rs"],
     edition = "2021",
+    visibility = ["//visibility:public"],
     deps = ["@rules_rust//tools/action_args"],
+)
+
+rust_binary(
+    name = "server",
+    srcs = ["server.rs"],
+    edition = "2021",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@rules_rust//tools/action_args",
+        "@rules_rust//tools/runfiles",
+    ],
 )
 
 bzl_library(
