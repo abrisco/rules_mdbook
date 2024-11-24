@@ -30,6 +30,7 @@ rules_mdbook_transitive_deps()
 ## Rules
 
 - [mdbook](#mdbook)
+- [mdbook_server](#mdbook_server)
 - [mdbook_toolchain](#mdbook_toolchain)
 
 ---
