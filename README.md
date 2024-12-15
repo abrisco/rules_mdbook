@@ -4,6 +4,10 @@
 
 Bazel rules for [mdBook](https://github.com/rust-lang/mdBook).
 
+## ARCHIVED
+
+This repository was upstreamed into [rules_rust](https://github.com/bazelbuild/rules_rust) as [rules_rust_mdbook](https://github.com/bazelbuild/rules_rust/tree/0.56.0/extensions/mdbook).
+
 ## Setup
 
 ```starlark
